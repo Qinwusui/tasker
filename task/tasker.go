@@ -107,6 +107,9 @@ func main() {
 	send.Data = sendData
 	b, _ := json.Marshal(send)
 	PushMI(string(b))
+	//等待一小时
+	time.Sleep(time.Hour *1)
+	main()
 }
 
 // PushMI 小米推送函数
@@ -143,7 +146,7 @@ func PushMI(m string) {
 	req.Header.Add("Accept", "*/*")
 	req.Header.Add("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:12.0) Gecko/20100101 Firefox/12.0")
 	//更改Mipush服务器的认证信息
-	req.Header.Add("Authorization", "key=VTisfjw1GU48XYdtlNn03w==") //
+	req.Header.Add("Authorization", "key=") //
 	req.Header.Add("content-type", "application/x-www-form-urlencoded")
 	req.Header.Add("content-length", strconv.Itoa(len(data.Encode())))
 	// 获取http响应
